@@ -11,11 +11,9 @@ module.exports = (sequelize, DataTypes) => {
   Intent.init({
     intent: {
       type: DataTypes.STRING,
-      allowNull: false
     },
     response: {
       type: DataTypes.TEXT,
-      allowNull: false
     },
     utterances: {
       type: DataTypes.ARRAY(DataTypes.STRING)

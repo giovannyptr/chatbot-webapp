@@ -5,10 +5,10 @@ class UserController {
     static async createBotProfile(req, res, next) {
 
         try {
-            const {name, picture, description}  = req.body
-            const response = await Profile.create({name, picture, description})
+            const {name, photo, description}  = req.body
+            const response = await Profile.create({name, photo, description})
 
-            res.status(201).json({ id: response.id, name: response.name, description: response.description, picture: 'success'})
+            res.status(201).json({ id: response.id, name: response.name, description: response.description, photo: response.picture})
 
         } catch (err) {
             next(err)
@@ -16,14 +16,11 @@ class UserController {
         }
     }
 
-    static async editProfile(req, res, next) {
+    static async editBotProfile(req, res, next) {
 		try {
-            console.log("test")
 			const id = req.params.id
-            console.log("chek", req.params.id);
 
 			const { name, picture, description } = req.body
-            console.log("id >>>", id)
 
 			const target = await Profile.findOne({ where: { id: id || null } });
 
@@ -42,7 +39,7 @@ class UserController {
 				}
 			);
 
-			res.status(200).json({ message: `Profile with id ${id} has been updated! ${name}` })
+			res.status(200).json({ message: `Profile with id ${id} has been updated!` })
 
 		} catch (err) {
 			next(err);

@@ -1,32 +1,24 @@
 const router = require('express').Router()
 const userController= require('../controllers/userController')
-// const productController = require('../controllers/productController')
-// const cartController = require('../controllers/cartController')
-// const authentication = require('../middlewares/authentication')
-// const errorHandler = require('../middlewares/errorHandler')
+const intentController = require('../controllers/intentController')
+const errorHandler = require('../middlewares/errorHandler')
+const uploadimage = require('../middlewares/multer')
+const imageKit = require('../middlewares/imageKit')
+
 
 
 router.get('/', (req, res) => {
-    res.send('this is hackbeauty')
+    res.send('this is gio-chatbot')
 })
 
-router.post('/createprofile', userController.createBotProfile)
-router.put('/editProfile/:id', userController.editProfile)
-// router.post('/login', userController.login)
-
-// router.get('/products', productController.getProducts)
-// router.get('/products/:id', productController.detailProduct)
-
-// router.use(authentication)
-
-// router.post('/mycarts', cartController.addCart)
-// router.get('/mycarts', cartController.getMyCart)
-// router.delete('/mycarts/:id', cartController.removeCart)
+router.post('/createprofile', imageKit, uploadimage, userController.createBotProfile)
+router.put('/editProfile/:id', userController.editBotProfile)
 
 
-// router.post('/order', productController.order)
+router.post('/createIntent', intentController.createIntent)
+router.post('/addUtterance/:id', intentController.addUtterance)
+router.get('/response', intentController.response)
 
-// router.use(errorHandler)
-
+router.use(errorHandler)
 
 module.exports = router

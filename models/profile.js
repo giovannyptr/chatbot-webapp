@@ -5,20 +5,25 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
     static associate(models) {
-      Profile.hasMany(models.Intent, { foreignKey: 'ProfileId' })
+      // define association here
     }
   }
   Profile.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
+    email: {
+      type: DataTypes.STRING
     },
-    picture: {
-      type: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING
+    },
+    name: {
+      type: DataTypes.STRING
+    },
+    photo: {
+      type: DataTypes.STRING
     },
     description: {
-      type: DataTypes.TEXT,
-    },
+      type: DataTypes.TEXT
+    }
   }, {
     sequelize,
     modelName: 'Profile',
