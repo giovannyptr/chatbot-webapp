@@ -14,14 +14,9 @@ npm install
 npx sequelize-cli db:create
 npx sequelize-cli db:migrate
 
-npm run dev
+nodemon app.js
 ```
 
-Branch and commits naming convention:
-
-```
-{Jira-ticket}-{commit-or-branch-descriptive-name}
-```
 
 To create a model and its migration:
 ```
