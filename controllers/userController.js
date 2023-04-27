@@ -5,10 +5,11 @@ class UserController {
     static async createBotProfile(req, res, next) {
 
         try {
-            const {name, photo, description}  = req.body
+            const {name, description}  = req.body
+			const photo = req.body.photo ? req.body.photo : "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg";
             const response = await Profile.create({name, photo, description})
 
-            res.status(201).json({ id: response.id, name: response.name, description: response.description, photo: response.picture})
+            res.status(201).json({ message: "your bot profile has already created"})
 
         } catch (err) {
             next(err)
@@ -21,11 +22,12 @@ class UserController {
 			const id = req.params.id
 
 			const { name, picture, description } = req.body
+			console.log('nama:', name);
 
 			const target = await Profile.findOne({ where: { id: id || null } });
 
 			if (!target) {
-				throw { title: "not found" };
+				throw { name: "profile not found" };
 			}
 
 			await Profile.update(

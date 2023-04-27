@@ -16,13 +16,24 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "Bot name is required." },
+        notEmpty: { msg: "Bot name is required." },
+      },
     },
     photo: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     description: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      allowNull: false,
+      allowNull: false,
+      validate: {
+        notNull: { msg: "Description is required." },
+        notEmpty: { msg: "Description is required." },
+      },
     }
   }, {
     sequelize,
